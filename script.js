@@ -273,3 +273,41 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 console.log('Haba Landing Page - Inicializado correctamente ✨');
+
+// ============ CONTADOR REAL DE GITHUB ============
+async function getRealDownloadCount() {
+    const statsContainer = document.getElementById('real-download-stats');
+    if (!statsContainer) return;
+
+    try {
+        // Consultamos la API pública de GitHub para tu repositorio
+        const response = await fetch('https://api.github.com/repos/alvarovert/Haba_page/releases');
+        
+        if (!response.ok) throw new Error('No se pudo conectar con GitHub API');
+        
+        const releases = await response.json();
+        let totalDownloads = 0;
+
+        // Sumamos las descargas de todos los archivos (.exe, .zip, etc.) en todas las versiones
+        releases.forEach(release => {
+            release.assets.forEach(asset => {
+                totalDownloads += asset.download_count;
+            });
+        });
+
+        // Aplicamos tu regla de marketing
+        if (totalDownloads < 1) {
+            statsContainer.innerHTML = `<strong>Se la primera persona en descargar esta nueva versión de Haba</strong> • Pruébalo y compártenos tu experiencia`;
+        } else {
+            statsContainer.innerHTML = `Descargado <strong>${totalDownloads}</strong> veces • Pruébalo y compártenos tu experiencia`;
+        }
+
+    } catch (error) {
+        // Si hay error de red o bloqueadores de anuncios, mostramos un mensaje por defecto limpio
+        console.warn('Haba: No se pudo obtener el contador de descargas reales.', error);
+        statsContainer.innerHTML = `<strong>Pruébalo y compártenos tu experiencia</strong>`;
+    }
+}
+
+// Ejecutamos la función apenas cargue la página
+window.addEventListener('load', getRealDownloadCount);
