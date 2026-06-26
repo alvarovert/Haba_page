@@ -91,9 +91,16 @@ function showDownloadNotification(platform) {
 
     // Simular inicio de descarga (reemplazar con URL real)
     setTimeout(() => {
-        console.log(`Iniciando descarga para ${platform}`);
-        window.location.href = 'https://github.com/alvarovert/Haba_page/releases/download/exe_V2.0.0/Haba.Setup.2.0.0.exe';
-    }, 500);
+            console.log(`Iniciando descarga para ${platform}`);
+            
+            if (platform === 'windows') {
+                window.location.href = 'https://github.com/alvarovert/Haba_page/releases/download/exe_V2.0.0/Haba.Setup.2.0.0.exe';
+            } else if (platform === 'macos') {
+                // AQUÍ VA EL ENLACE DEL .PKG PARA LOS USUARIOS DE MAC
+                window.location.href = 'PON_TU_LINK_DEL_PKG_AQUI'; 
+            }
+
+        }, 500);
 
     // Remover notificación
     setTimeout(() => {
