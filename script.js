@@ -97,7 +97,8 @@ function showDownloadNotification(platform) {
                 window.location.href = 'https://github.com/alvarovert/Haba_page/releases/download/exe_V2.0.0/Haba.Setup.2.0.0.exe';
             } else if (platform === 'macos') {
                 // AQUÍ VA EL ENLACE DEL .PKG PARA LOS USUARIOS DE MAC
-                window.location.href = 'https://github.com/alvarovert/Haba_page/releases/download/V2.0-MacOS/Haba-2.0.0-universal.dmg'; 
+                window.location.href = 'https://github.com/alvarovert/Haba_page/releases/download/V2.0_macOS/Haba-2.0.0-universal.dmg'; 
+                
             }
 
         }, 500);
